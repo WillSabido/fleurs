@@ -76,6 +76,14 @@ function ws_fleurs_widgets_init() {
 		'after_title'   => '</h1>',
 	) );
 	register_sidebar( array(
+		'name'          => __( 'Header', 'fleurs' ),
+		'id'            => 'header-1',
+		'before_widget' => '<aside id="%1$s" class="widget header-widget %2$s col-xs-12 col-md-4">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h1 class="widget-title">',
+		'after_title'   => '</h1>',
+	) );
+	register_sidebar( array(
 		'name'          => __( 'Footer', 'fleurs' ),
 		'id'            => 'footer-1',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s col-xs-12 col-md-4">',
@@ -144,9 +152,6 @@ if (!is_admin()) {
 		// Bootstrap
 		wp_register_style('bootstrap-styles', '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css', array(), null, 'all');
 		wp_enqueue_style('bootstrap-styles');
-		// Bootswatch Amelia styles
-//		wp_register_style('bootswatch-styles', '//netdna.bootstrapcdn.com/bootswatch/3.1.0/amelia/bootstrap.min.css', array(), null, 'all');
-//		wp_enqueue_style('bootswatch-styles');
 		// Theme Styles
 		wp_register_style('theme-styles', get_stylesheet_uri(), array(), null, 'all');
 		wp_enqueue_style('theme-styles');

@@ -12,7 +12,7 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-			<p class="credits twocol pull-left"><?php echo '&copy;' . date('Y') . '&nbsp;' . get_bloginfo ( 'name' ); ?> SIRET No. ######. All rights reserved.</p>
+			<p class="credits twocol pull-left"><?php echo '&copy;' . date('Y') . '&nbsp;' . get_bloginfo ( 'name' ); ?> N<sup>o.</sup> Siret 491 068 060 00020. All rights reserved.</p>
 			<p class="credits twocol pull-right">
 				<?php echo 'Web development and hosting by <a href="http://webisabihosting.co.uk" target="_blank">WebiSabi</a>'; ?>
 			</p>
@@ -29,6 +29,9 @@ jQuery(document).ready(function($) {
   		interval: 10000	
   	})
 });
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 </script>
 <!-- END Carousel autoplay fix -->
 </body>

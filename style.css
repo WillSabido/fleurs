@@ -376,7 +376,7 @@ textarea {
 	font-size: 1.2em;
 }
 a.btn.btn-primary {
-	background: rgba(66, 136, 205, 0.86);
+	background: rgba(161, 187, 107, .6);
 	border-color: rgba(182, 87, 87, 0.78);
 }
 a:hover.btn.btn-primary {
@@ -497,7 +497,7 @@ a.btn span {
 	list-style: none;
 	margin: -1px;
 }
-ul.sub-menu>li:first-child {
+nav#site-navigation ul.sub-menu>li:first-child {
 	margin-top: 12px;
 }
 .main-navigation ul:nth-child(2) {
@@ -563,7 +563,7 @@ ul.sub-menu>li:first-child {
 	cursor: pointer;
 	display: none;
 }
-@media screen and (max-width: 600px) {
+@media only screen and (max-device-width: 667px) {
 	.menu-toggle,
 	.main-navigation.toggled .nav-menu {
 		display: block;
@@ -756,8 +756,19 @@ aside ul, aside ul li, aside#nav_menu_2 ul, ul#menu-site-map, ul#menu-site-map l
 div#secondary aside#cycledtestimonialwidget-2 {
 	width: 420px;
 }
+aside#text-3.widget_text {
+	text-align: -webkit-center;
+	text-align: center;
+}
+aside.widget i {
+	margin: 18px 12px 1px 20px;
+}
+aside#nav_menu-3 ul.sub-menu li {
+	margin-left: 20%;
+	margin-bottom: 2px;
+}
 
-@media screen and (maxwidth: 600px) { 
+@media screen and (max-device-width: 667px) { 
 	div#secondary aside#cycledtestimonialwidget-2 {
 		width: 300px;
 	}
@@ -794,6 +805,7 @@ div.site-branding {
 	left: 50px;
 }
 h1.site-title {
+	text-shadow: 2px 0px 0px white;
 	font-size: 500%;
 }
 nav#site-navigation {
@@ -849,9 +861,19 @@ body.home article {
 	background: none;
 }
 /*----- Mobile edits -------*/
-@media screen and (maxwidth: 700px) { 
+@media only screen and (max-device-width: 667px) { 
+	.site-branding {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		font-size: 100%!important;
+	}
 	h1.site-title {
-		font-size: 200%;
+		margin-left: 10px;
+		font-size: 100%!important;
+	}
+	header img {
+		display:none;
 	}
 }
 /*--------------------------------------------------------------
@@ -1147,7 +1169,7 @@ div.advps-slide div {
     to {background: #1e73be; -moz-opacity: 0.6; filter: alpha(opacity=60);opacity: 0.6; left: 0px;}
 }
 /* Disable on mobile */
-@media screen and (max-width: 700px) {
+@media only screen and (max-device-width: 667px) {
 	div#advps_container1 {
 		display: none;
 	}
@@ -1170,8 +1192,8 @@ div.advps-slide div {
 	-webkit-border-radius: 20px;
 }
 .jumbotron#welcome {
-	background: url('images/africa_globe_1.png'), url('images/img-noise-361x370.png');
-	background-repeat: no-repeat, repeat;
+	background: url('images/seamless-floral-repeat-pattern-gradient.png'), url('images/img-noise-361x370.png');
+	background-repeat: x-repeat, repeat;
 	background-position: right top, left top;
 }
 .jumbotron h1 {
@@ -1235,4 +1257,7 @@ div.tab-content i {
 /* Font Awesome edit */
 body.page-id-27 div#primary.content-area i.fa {
 	left: 0px;
+}
+i.fa-5x {
+	color: rgba(181, 146, 140, 0.8);
 }

@@ -144,7 +144,7 @@ textarea {
 	line-height: 1.5;
 }
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Griffy', cursive;
+	font-family: 'Dancing Script', 'Griffy' cursive;
 	font-weight: 800;
 	clear: both;
 }
@@ -450,7 +450,23 @@ ul.menu.nav-menu>li:first-child {
 	border-radius: 0px;
 	margin-bottom: 0px;
 }
-
+/*--------------------------------------------------------------
+5.0.2 Language Menu
+--------------------------------------------------------------*/
+div.language-menu {
+	position: absolute;
+	top: 30px;
+	right: 0px;
+}
+div.language-menu a {
+	font-family: Montserrat, sans-serif;
+}
+div.language-menu ul {
+	list-style: none;
+}
+ul.menu {
+	list-style: none;
+}
 /*--------------------------------------------------------------
 5.1 Links
 --------------------------------------------------------------*/
@@ -683,6 +699,14 @@ ul.menu>li:nth-child(1) {
 /*--------------------------------------------------------------
 9.0 Widgets
 --------------------------------------------------------------*/
+/*header widget area */
+aside.header-widget {
+	z-index: 1;
+	position: absolute;
+	top: 0px;
+	right: 10%;
+}
+/* footer widget area */
 .widget {
 /*	margin: 0 0 1.5em 1.5em; */
 }
@@ -699,8 +723,8 @@ aside a {
 }
 h1.widget-title {
 	border-bottom: 1px solid darkgreen;
-	text-align: center;
 	text-align: -webkit-center;
+	text-align: center;
 	padding-bottom: 5px;
 	margin-bottom: 5px;
 }
@@ -741,9 +765,8 @@ div#secondary {
 	border-bottom-left-radius: 50px;
 }
 div#secondary aside {
-/*	width: 30%;*/
-/*	margin: 20px; */
 	float: left;
+	margin-bottom: 8%;
 }
 aside ul, aside ul li, aside#nav_menu_2 ul, ul#menu-site-map, ul#menu-site-map li, ul#menu-site-map li>ul, aside div.menu-main-navigation-container ul li {
 	border-left: none;
@@ -799,14 +822,19 @@ div#content {
 	width: auto;
 }
 div.site-branding {
+	font-family: 'Griffy', 'Waiting for the Sunrise', 'Indie Flowers', cursive;
 	position: absolute;
 	z-index: 9;
 	top: 100px;
 	left: 50px;
 }
 h1.site-title {
-	text-shadow: 2px 0px 0px white;
+	font-family: Griffy;
+	text-shadow: 2px -1px 3px aliceblue;
 	font-size: 500%;
+}
+h2.site-description {
+	text-shadow: 1px -1px 1px aliceblue;
 }
 nav#site-navigation {
 	background: none;
@@ -840,8 +868,10 @@ header#masthead {
 /*	background-repeat: repeat-x;*/
 }
 header img {
-	z-index: 90;
-	position: relative;
+	z-index: 0;
+	position: absolute;
+	top: 0px;
+	right: 0px;
 }
 .panel-group p {
   margin-bottom: 0px;
@@ -852,9 +882,9 @@ body.category-services article, body.tag article, body.archive article, body.sin
 	width:90%;
 	margin: 2% 5%;
 	padding:5%;
-	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
+	border-radius: 5px;
 	padding-top: 0;
 }
 body.home article {
@@ -918,9 +948,9 @@ header.entry-header {
 	margin-left: -7%;
 	padding: 20px 80px 10px 40px;
 	border-bottom: 4px solid darkgreen;
-	border-radius: 0 50px 10px 0;
 	-moz-border-radius: 0px 50px 10px 0px;
 	-webkit-border-radius: 0px 50px 10px 0px;
+	border-radius: 0 50px 10px 0;
 }
 body.page header.entry-header {
 	position: relative;
@@ -1017,156 +1047,15 @@ object {
 	max-width: 100%;
 }
 /*--------------------------------------------------------------
-12.1 Media - Carousel
+12.1 Media
 --------------------------------------------------------------*/
-.carousel {
-	position: relative;
-	top: -200px;
-	z-index: 1;
-	margin-bottom: -200px;
-}
-.carousel-inner > .item > img { margin: 0 auto; }
-.carousel-caption {
-    text-align: left;
-    font-size: 1.2em;
-    padding-left: 20px;
-    padding-right: 20px;
-	-webkit-border-top-left-radius: 5px;
-	-webkit-border-top-right-radius: 60px;
-	-webkit-border-bottom-right-radius: 10px;
-	-webkit-border-bottom-left-radius: 5px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright: 60px;
-	-moz-border-radius-bottomright: 10px;
-	-moz-border-radius-bottomleft: 5px;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 60px;
-	border-bottom-right-radius: 10px;
-	border-bottom-left-radius: 5px;
-    /* Fallback for web browsers that doesn't support RGBa */
-    background: rgb(0, 0, 0);
-    /* RGBa with 0.4 opacity */
-    background: rgba(0, 0, 0, 0.4);
-    /* For IE 5.5 - 7*/
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000);
-    /* For IE 8*/
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000)";
-}
-.carousel a {
-	color: gainsboro;
-}
-.carousel-inner ul {
-	list-style:none;
-}
-.carousel-caption ul {
-	list-style-type: none;
-}
-.carousel-caption h3 {
-	text-indent: 20px;
-	padding: 5px;
-	-webkit-border-top-left-radius: 5px;
-	-webkit-border-top-right-radius: 25px;
-	-webkit-border-bottom-right-radius: 0px;
-	-webkit-border-bottom-left-radius: 0px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright: 25px;
-	-moz-border-radius-bottomright: 0px;
-	-moz-border-radius-bottomleft: 0px;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 25px;
-	border-bottom-right-radius: 0px;
-	border-bottom-left-radius: 0px;
-    /* Fallback for web browsers that doesn't support RGBa */
-    background: rgb(0, 0, 0);
-    /* RGBa with 0.6 opacity */
-    background: rgba(0, 0, 0, 0.6);
-    /* For IE 5.5 - 7*/
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000);
-    /* For IE 8*/
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000)";
-}
-.carousel-caption p, .carousel-caption ul {
-	padding: 8px 8px 12px 12px;
-	-webkit-border-top-left-radius: 0px;
-	-webkit-border-top-right-radius: 0px;
-	-webkit-border-bottom-right-radius: 10px;
-	-webkit-border-bottom-left-radius: 5px;
-	-moz-border-radius-topleft: 0px;
-	-moz-border-radius-topright: 0px;
-	-moz-border-radius-bottomright: 10px;
-	-moz-border-radius-bottomleft: 5px;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
-	border-bottom-right-radius: 10px;
-	border-bottom-left-radius: 5px;
-    /* Fallback for web browsers that doesn't support RGBa */
-    background: rgb(0, 0, 0);
-    /* RGBa with 0.5 opacity */
-    background: rgba(0, 0, 0, 0.5);
-    /* For IE 5.5 - 7*/
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000);
-    /* For IE 8*/
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000)";
-}
-.carousel-caption button {
-	vertical-align: baseline;
-	padding: 4px;
-	text-align: center;
-	font-size: 1em;
-}
-.carousel-caption ul {
-	text-indent: 20px;
-	margin: 0 0 35px 0px;
-}
+
 /*--------------------------------------------------------------
-12.2 Media - ADVPS Carousel
+12.2 Media - Meta Slider
 --------------------------------------------------------------*/
-div#advps_container1 {
-	position: relative;
-	top: -200px;
-	z-index: 1;
-	margin-bottom: -200px;
-}
-div.advps-slide>div {
-	font-family: 'Lobster Two', cursive;
-	border-radius: 0 10px 10px 0px;
-	-moz-border-radius: 0px 10px 10px 0px;
-	-webkit-border-radius: 0px 10px 10px 0px;
-	border-bottom: 1px solid darkgreen;
-}
-h1.advs-title {
-	font-family: 'Handlee', sans-serif;
-/*	background: rgba(139, 0, 0, 0.9); */
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	margin-right: -4%;
-	padding: 0px 25px;
-	display: inline-flex;
-	border-bottom: 4px solid darkgreen;
-}
-.advps-slide p {
-	font-family: 'La Belle Aurore', cursive;
-}
-/* Animation for slides */
-div.advps-slide div {
-    -webkit-animation: febeslider 2s; /* Chrome, Safari, Opera */
-    animation: febeslider 2s;
-    border-radius: 0 15px 15px 0px;
-	-moz-border-radius: 0px 15px 15px 0px;
-	-webkit-border-radius: 0px 15px 15px 0px;
-}
-
-/* Chrome, Safari, Opera */
-@-webkit-keyframes febeslider {
-    from {background: darkgreen; left: -2000px;}
-    to {background: #1e73be; -moz-opacity: 0.6; filter: alpha(opacity=60);opacity: 0.6; left: 0px;}
-}
-
-/* Standard syntax */
-@keyframes febeslider {
-    from {background: darkgreen; left: -2000px;}
-    to {background: #1e73be; -moz-opacity: 0.6; filter: alpha(opacity=60);opacity: 0.6; left: 0px;}
+/*homepage header slider*/
+div.metaslider-32 {
+	z-index: -1;
 }
 /* Disable on mobile */
 @media only screen and (max-device-width: 667px) {
@@ -1187,9 +1076,10 @@ div.advps-slide div {
 --------------------------------------------------------------*/
 /* jumbotron */
 .jumbotron {
-	border-radius: 20px;
+	font-family: 'Indie Flowers', cursive;
 	-moz-border-radius: 20px;
 	-webkit-border-radius: 20px;
+	border-radius: 20px;
 }
 .jumbotron#welcome {
 	background: url('images/seamless-floral-repeat-pattern-gradient.png'), url('images/img-noise-361x370.png');
@@ -1214,7 +1104,7 @@ div.advps-slide div {
 	transition: color 800ms ease-in-out;
 }
 /* tabs */
-ul#febeTab {
+ul#fleursTab {
 	width: 90%;
 	margin-left: 5%;
 	margin-right: 5%;
@@ -1228,9 +1118,9 @@ ul#febeTab {
 	background: -ms-linear-gradient(top, rgba(226,226,226,0.95) 0%, rgba(224,224,224,0.7) 59%, rgba(255,255,255,0) 100%);
 	background: linear-gradient(to bottom, rgba(226,226,226,0.95) 0%, rgba(224,224,224,0.7) 59%, rgba(255,255,255,0) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#ffffff', GradientType=0 );
-	border-radius: 10px 10px 0px 0px;
 	-moz-border-radius: 10px 10px 0px 0px;
 	-webkit-border-radius: 10px 10px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
 	border-top: 1px solid #dedede;
 	padding: 30px;
 }
@@ -1259,5 +1149,7 @@ body.page-id-27 div#primary.content-area i.fa {
 	left: 0px;
 }
 i.fa-5x {
+	vertical-align: -webkit-baseline-middle;
+	vertical-align: middle;
 	color: rgba(181, 146, 140, 0.8);
 }

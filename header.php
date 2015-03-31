@@ -28,37 +28,40 @@
 
 <body <?php body_class(); ?>>
 
-<div id="page" class="hfeed site">
+	<div id="page" class="hfeed site">
 
-	<header id="masthead" class="site-header" role="banner">
-  <?php get_header_image(); ?>
-	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-		<img src="<?php header_image(); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="">
-	</a>
+		<header id="masthead" class="site-header" role="banner">
+			<!-- metaslider on homepage, else header-->
+			<?php if ( is_home() || is_front_page() ) : if (!is_admin()) {
+				echo do_shortcode('[metaslider id=32]');
+				echo do_shortcode('[metaslider id=30]');
+				}
+				else {
+				echo do_shortcode('[metaslider id=44]');
+				echo '<img src="header.jpg" alt="header image">';
+				}
+				endif;
+			?>
+			<!-- END metaslider -->
+  			<?php if ( get_header_image() ) : ?>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+				<img src="<?php header_image(); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="Des Heures Dehors header image">
+			</a>
+			<?php endif; // End header image check. ?>
+  			<?php wp_nav_menu( array( 'theme_location' => 'language', 'fleurs', 'container_class' => 'language-menu' ) ); ?>
+  			<?php dynamic_sidebar( 'header-1' ); ?>
 <!-- END Header image -->
-		<div class="site-branding">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-		</div>
-
-		<nav id="site-navigation" class="navbar navbar-default main-navigation" role="navigation">
-			<h1 class="menu-toggle"><?php _e( 'Menu', 'fleurs' ); ?></h1>
-			<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'fleurs' ); ?></a>
-
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-			<aside id="search" class="pull-right widget_search">
-				<?php get_search_form(); ?>
-			</aside>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-<?php if ( is_home() || is_front_page() ) : if (!is_admin()) {
-/**
- * Load Slider on homepage in frontend. Comment/uncomment to disable/enable
- */
-//	echo do_shortcode('[image-carousel]');
-//	echo do_shortcode('[advps-slideshow optset="1"]');
-	echo do_shortcode('[metaslider id=32]');
-}
-endif;
-?>
+			<div class="site-branding">
+				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+			</div>
+			<nav id="site-navigation" class="navbar navbar-default main-navigation" role="navigation">
+				<h1 class="menu-toggle"><?php _e( 'Menu', 'fleurs' ); ?></h1>
+				<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'fleurs' ); ?></a>
+				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+				<aside id="search" class="pull-right widget_search">
+					<?php get_search_form(); ?>
+				</aside>
+			</nav><!-- #site-navigation -->
+		</header><!-- #masthead -->
 	<div id="content" class="site-content">

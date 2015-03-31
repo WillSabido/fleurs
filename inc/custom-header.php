@@ -26,11 +26,11 @@
  */
 function ws_fleurs_custom_header_setup() {
 	add_theme_support( 'custom-header', apply_filters( 'ws_fleurs_custom_header_args', array(
-		'default-image'          => '',
+		'default-image'          => get_template_directory_uri() . '/images/header.jpg',
 		'default-text-color'     => '000000',
-		'width'                  => 1000,
-		'height'                 => 250,
-		'flex-height'            => true,
+		'width'                  => 300,
+		'height'                 => 300,
+		'flex-height'            => false,
 		'wp-head-callback'       => 'ws_fleurs_header_style',
 		'admin-head-callback'    => 'ws_fleurs_admin_header_style',
 		'admin-preview-callback' => 'ws_fleurs_admin_header_image',
@@ -120,7 +120,7 @@ function ws_fleurs_admin_header_image() {
 		<h1 class="displaying-header-text"><a id="name"<?php echo $style; ?> onclick="return false;" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
 		<div class="displaying-header-text" id="desc"<?php echo $style; ?>><?php bloginfo( 'description' ); ?></div>
 		<?php if ( get_header_image() ) : ?>
-		<img src="<?php header_image(); ?>" alt="">
+		<img src="<?php header_image(); ?>" alt="Des Heures Dehors header image">
 		<?php endif; ?>
 	</div>
 <?php

@@ -43,6 +43,7 @@ function ws_fleurs_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'fleurs' ),
+		'language'=> __( 'Language Menu', 'fleurs' )
 	) );
 	
 	// Enable support for featured images
@@ -86,7 +87,7 @@ function ws_fleurs_widgets_init() {
 	register_sidebar( array(
 		'name'          => __( 'Footer', 'fleurs' ),
 		'id'            => 'footer-1',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s col-xs-12 col-md-4">',
+		'before_widget' => '<aside id="%1$s" class="widget footer-widget %2$s col-xs-12 col-md-4">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h1 class="widget-title">',
 		'after_title'   => '</h1>',

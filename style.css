@@ -395,11 +395,11 @@ a:hover.btn.btn-primary {
 	background: none;
 }
 .main-navigation ul>li {
-	background: rgba(137, 174, 67, 0.7);
+	background: rgba(210, 157, 36, 0.8);
 }
 .main-navigation ul ul li {
 	margin-top: 4px;
-	background: rgba(137, 174, 67, 0.8);
+	background: rgba(210, 157, 36, 0.6);
 }
 .main-navigation {
 /*	box-shadow: 0px 1px 2px #888888;*/
@@ -421,7 +421,7 @@ a:hover.btn.btn-primary {
 .main-navigation a:hover>li {
 	text-decoration: none;
 	color: White;
-	background: darkgreen;
+	background: rgba(210, 157, 36, 0.5);
 	-webkit-transition: background 800ms ease-in-out;
 	-moz-transition: background 800ms ease-in-out;
 	-ms-transition: background 800ms ease-in-out;
@@ -431,7 +431,7 @@ a:hover.btn.btn-primary {
 .main-navigation a:hover li {
 	text-decoration: none;
 	color: White;
-	background: darkgreen;
+	background: rgba(210, 157, 36, 0.5);
 	-webkit-transition: background 800ms ease-in-out;
 	-moz-transition: background 800ms ease-in-out;
 	-ms-transition: background 800ms ease-in-out;
@@ -459,6 +459,7 @@ div.language-menu {
 	right: 0px;
 }
 div.language-menu a {
+	color: rgba(210, 157, 36, 0.9);
 	font-family: Montserrat, sans-serif;
 }
 div.language-menu ul {
@@ -471,7 +472,7 @@ ul.menu {
 5.1 Links
 --------------------------------------------------------------*/
 a {
-	color: rgba(137, 99, 104, 0.7);
+	color: rgba(210, 157, 36, 0.9);
 }
 a:visited {
 	color: DarkSlateGrey;
@@ -503,7 +504,7 @@ a.btn span {
 	display: block;
 	float: left;
 	width: 100%;
-	border-top: 2px solid darkgreen;
+	border-top: 2px solid rgba(210, 157, 36, 0.8);
 	font-size: large;
 }
 .main-navigation a {
@@ -523,7 +524,7 @@ nav#site-navigation ul.sub-menu>li:first-child {
 	float: left;
 	margin-left: 3px;
 	position: relative;
-	border-bottom: 8px solid darkolivegreen;
+	border-bottom: 8px solid rgba(210, 157, 36, 1);
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 	-webkit-border-top-left-radius: 5px 15px;
 	-webkit-border-top-right-radius: 45px 35px;
@@ -539,7 +540,7 @@ nav#site-navigation ul.sub-menu>li:first-child {
 	border-bottom-left-radius: 45px 50px;
 }
 .main-navigation li:hover {
-	background-color: rgba(137, 174, 67, 0.4);
+	background-color: rgba(210, 157, 36, 0.4);
 	text-shadow: 1px 1px 3px darkslategrey, -1px -1px 1px whitesmoke;
 }
 .main-navigation a {
@@ -722,7 +723,7 @@ aside a {
 	font-family: Griffy, cursive;
 }
 h1.widget-title {
-	border-bottom: 1px solid darkgreen;
+	border-bottom: 1px solid rgba(210, 157, 36, 0.8);
 	text-align: -webkit-center;
 	text-align: center;
 	padding-bottom: 5px;
@@ -750,7 +751,7 @@ div#secondary {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#deffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
 	min-height: 250px;
 	padding: 40px;
-	border-top: 4px solid darkgreen;
+	border-top: 4px solid rgba(210, 157, 36, 1);
 	-webkit-border-top-left-radius: 0px;
 	-webkit-border-top-right-radius: 50px;
 	-webkit-border-bottom-right-radius: 160px;
@@ -775,9 +776,6 @@ aside ul, aside ul li, aside#nav_menu_2 ul, ul#menu-site-map, ul#menu-site-map l
 	border-top: none;
 	list-style-type: none;
 	margin-left: 5%;
-}
-div#secondary aside#cycledtestimonialwidget-2 {
-	width: 420px;
 }
 aside#text-3.widget_text {
 	text-align: -webkit-center;
@@ -870,8 +868,8 @@ header#masthead {
 header img {
 	z-index: 0;
 	position: absolute;
-	top: 0px;
-	right: 0px;
+	top: 20px;
+	right: 40px;
 }
 .panel-group p {
   margin-bottom: 0px;
@@ -937,7 +935,7 @@ header.page-header {
 	padding: 30px;
 }
 header.page-header h1 {
-	border-bottom: 2px solid darkgreen;
+	border-bottom: 2px solid rgba(210, 157, 36, 1);
 }
 article#post-8 header {
 	display: none;
@@ -947,7 +945,7 @@ header.entry-header {
 	background: white;
 	margin-left: -7%;
 	padding: 20px 80px 10px 40px;
-	border-bottom: 4px solid darkgreen;
+	border-bottom: 4px solid rgba(210, 157, 36, 0.8);
 	-moz-border-radius: 0px 50px 10px 0px;
 	-webkit-border-radius: 0px 50px 10px 0px;
 	border-radius: 0 50px 10px 0;
@@ -1047,7 +1045,7 @@ object {
 	max-width: 100%;
 }
 /*--------------------------------------------------------------
-12.1 Media
+12.1 Media - Crelly Slider Edits?
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -1083,11 +1081,11 @@ div.metaslider-32 {
 }
 .jumbotron#welcome {
 	background: url('images/seamless-floral-repeat-pattern-gradient.png'), url('images/img-noise-361x370.png');
-	background-repeat: x-repeat, repeat;
+	background-repeat: no-repeat, repeat;
 	background-position: right top, left top;
 }
 .jumbotron h1 {
-	border-bottom: 4px solid darkgreen;
+	border-bottom: 4px solid rgba(210, 157, 36, 0.9);
 	margin-bottom: 20px;
 	text-shadow: 1px 2px 2px whitesmoke, -1px -1px 2px black;
 }
@@ -1142,7 +1140,7 @@ div.tab-content i {
 	transition: background 800ms ease-in-out;
 }
 .popover-title {
-	border-bottom: 1px solid darkgreen;
+	border-bottom: 1px solid rgba(210, 157, 36, 0.8);
 }
 /* Font Awesome edit */
 body.page-id-27 div#primary.content-area i.fa {
@@ -1151,5 +1149,5 @@ body.page-id-27 div#primary.content-area i.fa {
 i.fa-5x {
 	vertical-align: -webkit-baseline-middle;
 	vertical-align: middle;
-	color: rgba(181, 146, 140, 0.8);
+	color: rgba(210, 157, 36, 0.6);
 }

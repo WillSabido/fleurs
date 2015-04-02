@@ -3,7 +3,7 @@
  * The Header for our theme.
  *
  * Displays all of the <head> section and everything up till <div id="content">
- *
+ * cut fonts <link href='http://fonts.googleapis.com/css?family=Poiret+One|Petit+Formal+Script|La+Belle+Aurore|Waiting+for+the+Sunrise|Indie+Flower|Dancing+Script:400,700|Lobster+Two:400,400italic,700|Handlee|Oregano:400,400italic|Griffy|Spirax|Montserrat:400,700' rel='stylesheet' type='text/css'>
  * @package webisabi-fleurs
  */
 ?><!DOCTYPE html>
@@ -17,7 +17,7 @@
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Poiret+One|Petit+Formal+Script|La+Belle+Aurore|Waiting+for+the+Sunrise|Indie+Flower|Dancing+Script:400,700|Lobster+Two:400,400italic,700|Handlee|Oregano:400,400italic|Griffy|Spirax|Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Snippet|Poiret+One|Comfortaa:400,300,700|Spirax' rel='stylesheet' type='text/css'>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="<?php get_template_directory() . '/js/html5shiv.js' ?>"></script>
@@ -31,14 +31,18 @@
 	<div id="page" class="hfeed site">
 
 		<header id="masthead" class="site-header" role="banner">
-			<!-- metaslider on homepage, else header-->
+			<!-- meta/crellyslider on homepage, about, edibles pages, else header image -->
 			<?php if ( is_home() || is_front_page() ) : if (!is_admin()) {
-				echo do_shortcode('[metaslider id=32]');
-				echo do_shortcode('[metaslider id=30]');
+				echo do_shortcode('[crellyslider alias="homepage"]');
+				}
+				elseif ( is_page( 'about' ) || '8' == $post->post_parent ) {
+				echo do_shortcode('[crellyslider alias="about"]');
+				}
+				elseif ( is_page( 'comestibles' ) || '10' == $post->post_parent ) {
+				echo do_shortcode('[crellyslider alias="edibles"]');
 				}
 				else {
-				echo do_shortcode('[metaslider id=44]');
-				echo '<img src="header.jpg" alt="header image">';
+				echo do_shortcode('[crellyslider alias="other"]');
 				}
 				endif;
 			?>
@@ -59,7 +63,7 @@
 				<h1 class="menu-toggle"><?php _e( 'Menu', 'fleurs' ); ?></h1>
 				<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'fleurs' ); ?></a>
 				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-				<aside id="search" class="pull-right widget_search">
+				<aside id="search" class="pull-left widget_search">
 					<?php get_search_form(); ?>
 				</aside>
 			</nav><!-- #site-navigation -->

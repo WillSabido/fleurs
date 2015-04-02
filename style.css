@@ -3,7 +3,7 @@ Theme Name: webisabi-fleurs
 Theme URI: http://webisabihosting.co.uk/
 Author: will@dev.webisabi.co.uk
 Author URI: http://webisabihosting.co.uk
-Description: Responsive WordPress theme based on webisabi-fleurs
+Description: Responsive WordPress theme based on _s
 Version: 1.0
 License: GNU General Public License
 License URI: license.txt
@@ -30,9 +30,10 @@ and Blueprint http://www.blueprintcss.org/
 3.0 - Elements
 4.0 - Inputs and buttons
 5.0 - Navigation
-	5.0.1 - Bootstrap Navbar
 	5.1 - Links
 	5.2 - Menus
+		5.2.1 - Bootstrap navbar
+		5.2.3 - Language menu
 6.0 - Accessibility
 7.0 - Alignments
 8.0 - Clearings
@@ -44,7 +45,7 @@ and Blueprint http://www.blueprintcss.org/
 	10.4 - Testimonials
 11.0 - Infinite scroll
 12.0 - Media
-	12.1 - Carousel
+	12.1 - Crelly Slider edits
 13.0 - Bootstrap edits
 --------------------------------------------------------------*/
 
@@ -138,35 +139,38 @@ input,
 select,
 textarea {
 	color: #404040;
-	font-family: 'Poiret One', 'Petit Formal Script', 'La Belle Aurore', 'Waiting for the Sunrise', 'Indie Flower', 'Dancing Script', 'Lobster Two', 'Handlee', 'Oregano', 'Griffy', 'Spirax', 'Montserrat', cursive;
+	font-family: 'Snippet', 'Poiret One', 'Open Sans', 'Helvetica', sans-serif;
 	font-size: 16px;
 	font-size: 1.6rem;
 	line-height: 1.5;
 }
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Dancing Script', 'Griffy' cursive;
-	font-weight: 800;
+	font-family: 'Comfortaa', 'Spirax', cursive;
+	font-weight: 700;
+	color: rgb(8, 9, 44);
 	clear: both;
 }
 h1 {
-	font-size: 160%;
+	font-size: 180%;
 	font-weight: bold;
 }
 h2 {
-	font-size: 150%;
-	font-weight: 700italic;
+	font-size: 160%;
+	font-style: italic;
 }
 h3 {
 	font-size: 140%;
 }
 h4 {
 	font-size: 120%;
+	font-style: italic;
 }
 h5 {
 	font-size: 110%;
 }
 h6 {
 	font-size: 100%;
+	font-style: italic;
 }
 div#secondary h1 {
 	font-size: 120%;
@@ -233,7 +237,7 @@ big {
 3.0 Elements
 --------------------------------------------------------------*/
 hr {
-	background-color: darkgreen;
+	background-color: rgba(210, 157, 36, 0.8);
 	border: 0;
 	height: 1px;
 	margin-bottom: 1.5em;
@@ -372,16 +376,16 @@ textarea {
 	margin-right: 15px;
 }
 .btn {
-	font-family: 'Griffy', cursive;
+	font-family: 'Spirax', cursive;
 	font-size: 1.2em;
 }
 a.btn.btn-primary {
-	background: rgba(161, 187, 107, .6);
+	background: rgba(210, 157, 36, 0.6);
 	border-color: rgba(182, 87, 87, 0.78);
 }
 a:hover.btn.btn-primary {
 	border: 1px solid darkgreen;
-	background: darkgreen;
+	background: rgba(210, 157, 36, 0.7);
 	-webkit-transition: background 800ms ease-in-out;
 	-moz-transition: background 800ms ease-in-out;
 	-ms-transition: background 800ms ease-in-out;
@@ -410,27 +414,27 @@ a:hover.btn.btn-primary {
 }
 .main-navigation a {
 	padding: 10px 10px 7px 10px;
-	color: WhiteSmoke;
+	color: rgba(8, 9, 44, 0.8);
 }
 .main-navigation a:active {
-	color: darkgreen;
+	color: rgba(210, 157, 36, 1);
 }
 .main-navigation a:visited {
-	color: White;
+	color: rgba(8, 9, 44, 0.7);
 }
 .main-navigation a:hover>li {
 	text-decoration: none;
 	color: White;
 	background: rgba(210, 157, 36, 0.5);
-	-webkit-transition: background 800ms ease-in-out;
-	-moz-transition: background 800ms ease-in-out;
-	-ms-transition: background 800ms ease-in-out;
-	-o-transition: background 800ms ease-in-out;
-	transition: background 800ms ease-in-out;
+	-webkit-transition: background color 800ms ease-in-out;
+	-moz-transition: background color 800ms ease-in-out;
+	-ms-transition: background color 800ms ease-in-out;
+	-o-transition: background color 800ms ease-in-out;
+	transition: background color 800ms ease-in-out;
 }
 .main-navigation a:hover li {
 	text-decoration: none;
-	color: White;
+/*	color: White; */
 	background: rgba(210, 157, 36, 0.5);
 	-webkit-transition: background 800ms ease-in-out;
 	-moz-transition: background 800ms ease-in-out;
@@ -441,32 +445,8 @@ a:hover.btn.btn-primary {
 ul.menu.nav-menu>li:first-child {
 	margin-left: 40px;
 }
-/*--------------------------------------------------------------
-5.0.1 Bootstrap Navbar
---------------------------------------------------------------*/
-.navbar {
-	min-height: 42px;
-	border: none;
-	border-radius: 0px;
-	margin-bottom: 0px;
-}
-/*--------------------------------------------------------------
-5.0.2 Language Menu
---------------------------------------------------------------*/
-div.language-menu {
-	position: absolute;
-	top: 30px;
-	right: 0px;
-}
-div.language-menu a {
-	color: rgba(210, 157, 36, 0.9);
-	font-family: Montserrat, sans-serif;
-}
-div.language-menu ul {
-	list-style: none;
-}
-ul.menu {
-	list-style: none;
+.main-navigation li:hover>ul li:hover a {
+  color: floralwhite;
 }
 /*--------------------------------------------------------------
 5.1 Links
@@ -475,13 +455,13 @@ a {
 	color: rgba(210, 157, 36, 0.9);
 }
 a:visited {
-	color: DarkSlateGrey;
+	color: rgba(8, 9, 44, 0.5);
 }
 a:hover,
 a:focus,
 a:active {
 	text-decoration: none;
-	color: darkgreen;
+	color: rgb(8, 9, 44);
 	-webkit-transition: color 800ms ease-in-out;
 	-moz-transition: color 800ms ease-in-out;
 	-ms-transition: color 800ms ease-in-out;
@@ -621,6 +601,34 @@ ul.menu>li:nth-child(1) {
 	text-shadow: 0 0 2px 2px rgba(244, 244, 244, 0.6);
 }
 /*--------------------------------------------------------------
+5.2.1 Bootstrap Navbar
+--------------------------------------------------------------*/
+.navbar {
+	min-height: 42px;
+	border: none;
+	border-radius: 0px;
+	margin-bottom: 0px;
+}
+/*--------------------------------------------------------------
+5.2.2 Language Menu
+--------------------------------------------------------------*/
+div.language-menu {
+	z-index: 100;
+	position: absolute;
+	top: 30px;
+	right: 0px;
+}
+div.language-menu a {
+	color: rgba(210, 157, 36, 0.9);
+	font-family: Montserrat, sans-serif;
+}
+div.language-menu ul {
+	list-style: none;
+}
+ul.menu {
+	list-style: none;
+}
+/*--------------------------------------------------------------
 6.0 Accessibility
 --------------------------------------------------------------*/
 /* Text meant only for screen readers */
@@ -720,7 +728,7 @@ aside.widget p {
 }
 /* Style links & titles for widgets */
 aside a {
-	font-family: Griffy, cursive;
+	font-family: 'Spirax', cursive;
 }
 h1.widget-title {
 	border-bottom: 1px solid rgba(210, 157, 36, 0.8);
@@ -730,6 +738,43 @@ h1.widget-title {
 	margin-bottom: 5px;
 }
 /* Search widget */
+#masthead aside#search input[type="search"] {
+	border-radius: 4px 24px;
+	margin: 4px 8px;
+}
+#masthead .search-form {
+	float:right;
+}
+#masthead #sidebar-header .search-form {
+/*	margin-top: 30px; */
+}
+#masthead input.search-field {
+	width: 0;
+	height: 16px;
+	padding:8px 16px;
+	margin-right:0;
+	background:#dedede url(images/search.png) right center no-repeat;
+	background:rgba(0, 0, 0, .1) url(images/search.png) right center no-repeat;
+	border:none;
+	border-radius:24px;
+	box-shadow: none;
+	color:#999;
+	font-size:12px;
+	font-family:'Poiret One', 'Open Sans', sans-serif;
+	text-indent: 16px;
+	-moz-transition: width .25s ease, margin .25s ease;
+	-webkit-transition: width .25s ease, margin .25s ease;
+	-o-transition: width .25s ease, margin .25s ease;
+	-ms-transition: width .25s ease, margin .25s ease;
+	transition: width .25s ease, margin .25s ease;
+}
+#masthead input.search-field:focus {
+	width:180px;
+	background:#ececec url(images/search.png) right center no-repeat;
+	box-shadow:inset 1px 1px 5px 1px rgba(0, 0, 0, .1);
+	color:#333;
+	text-indent: 0;
+}
 .widget_search .search-submit {
 	display: none;
 }
@@ -777,7 +822,7 @@ aside ul, aside ul li, aside#nav_menu_2 ul, ul#menu-site-map, ul#menu-site-map l
 	list-style-type: none;
 	margin-left: 5%;
 }
-aside#text-3.widget_text {
+aside#text-3.widget_text, aside#text-4, aside#text-2 {
 	text-align: -webkit-center;
 	text-align: center;
 }
@@ -798,7 +843,7 @@ aside#nav_menu-3 ul.sub-menu li {
 10.0 Content
 --------------------------------------------------------------*/
 p, ul {
-	font-family: 'La Belle Aurore', cursive;
+	font-family: 'Snippet', 'Poiret One', sans-serif;
 }
 .entry-content ul {
 	margin-left: 50px;
@@ -820,7 +865,7 @@ div#content {
 	width: auto;
 }
 div.site-branding {
-	font-family: 'Griffy', 'Waiting for the Sunrise', 'Indie Flowers', cursive;
+	font-family: 'Comfortaa', 'Poiret One', cursive;
 	position: absolute;
 	z-index: 9;
 	top: 100px;
@@ -844,7 +889,7 @@ div.site-info {
 	padding: 0 20px 0 20px;
 }
 p.credits {
-	font-family: Poiret One, sans-serif;
+	font-family: 'Poiret One', sans-serif;
 }
 div.panel-heading a {
 	display: flex;
@@ -1074,7 +1119,7 @@ div.metaslider-32 {
 --------------------------------------------------------------*/
 /* jumbotron */
 .jumbotron {
-	font-family: 'Indie Flowers', cursive;
+	font-family: 'Spirax', cursive;
 	-moz-border-radius: 20px;
 	-webkit-border-radius: 20px;
 	border-radius: 20px;
@@ -1141,6 +1186,14 @@ div.tab-content i {
 }
 .popover-title {
 	border-bottom: 1px solid rgba(210, 157, 36, 0.8);
+}
+/* Tooltip edits */
+.tooltip.top .tooltip-inner {
+	color: rgb(210, 157, 36);
+    background-color:rgb(8, 9, 44);
+}
+.tooltip.top .tooltip-arrow {
+      border-top-color: rgb(8, 9, 44);
 }
 /* Font Awesome edit */
 body.page-id-27 div#primary.content-area i.fa {

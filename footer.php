@@ -12,9 +12,9 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-			<p class="credits twocol pull-left"><?php echo '&copy;' . date('Y') . '&nbsp;' . get_bloginfo ( 'name' ); ?> N<sup>o.</sup> Siret 491 068 060 00020. All rights reserved.</p>
+			<p class="credits twocol pull-left"><?php echo '&copy;' . date('Y') . '&nbsp;' . get_bloginfo ( 'name' ); ?> N<sup>o.</sup> Siret 491 068 060 00020. Tous les droits sont réservés.</p>
 			<p class="credits twocol pull-right">
-				<?php echo 'Web development and hosting by <a href="http://webisabihosting.co.uk" target="_blank">WebiSabi</a>'; ?>
+				<?php echo 'Le développement web et hébergement par  <a href="http://webisabihosting.co.uk" target="_blank">WebiSabi</a>'; ?>
 			</p>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->

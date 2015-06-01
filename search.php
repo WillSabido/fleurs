@@ -23,7 +23,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php ws_febe_paging_nav(); ?>
+			<?php fleurs_paging_nav(); ?>
 
 		<?php else : ?>
 

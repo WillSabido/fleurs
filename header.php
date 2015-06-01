@@ -31,7 +31,35 @@
 	<div id="page" class="hfeed site">
 
 		<header id="masthead" class="site-header" role="banner">
-			<!-- meta/crellyslider on homepage, about, edibles pages, else header image -->
+			<?php if ( get_header_image() ) : ?>
+			<div class="header-image">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+				<img id="header-image" src="<?php header_image(); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="<?php echo bloginfo('name'); ?> header image">
+			</a>
+			</div>
+			<?php endif; // End header image check. ?>
+  			<?php wp_nav_menu( array( 'theme_location' => 'language', 'fleurs', 'container_class' => 'language-menu' ) ); ?>
+  			<?php dynamic_sidebar( 'header-1' ); ?>
+			<!-- END Header image -->
+			<div class="site-branding">
+				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+			</div>
+			<nav id="site-navigation" class="navbar navbar-default main-navigation" role="navigation">
+				<h1 class="menu-toggle"><?php _e( 'Menu', 'fleurs' ); ?></h1>
+				<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'fleurs' ); ?></a>
+				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+				<aside id="search" class="pull-left widget_search">
+					<?php get_search_form(); ?>
+				</aside>
+			</nav><!-- #site-navigation -->
+			<nav id="fade-in-site-navigation" class="navbar navbar-default main-navigation fade-in" role="navigation" data-spy="affix" data-offset-top="262">
+				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+				<aside id="search" class="pull-left widget_search">
+					<?php get_search_form(); ?>
+				</aside>
+			</nav>
+			<!-- slider on homepage, about, edibles pages, else other slider -->
 			<?php if ( is_home() || is_front_page() ) : if (!is_admin()) {
 				echo do_shortcode('[crellyslider alias="homepage"]');
 				}
@@ -46,26 +74,6 @@
 				}
 				endif;
 			?>
-			<!-- END metaslider -->
-  			<?php if ( get_header_image() ) : ?>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-				<img src="<?php header_image(); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="Des Heures Dehors header image">
-			</a>
-			<?php endif; // End header image check. ?>
-  			<?php wp_nav_menu( array( 'theme_location' => 'language', 'fleurs', 'container_class' => 'language-menu' ) ); ?>
-  			<?php dynamic_sidebar( 'header-1' ); ?>
-<!-- END Header image -->
-			<div class="site-branding">
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-			</div>
-			<nav id="site-navigation" class="navbar navbar-default main-navigation" role="navigation">
-				<h1 class="menu-toggle"><?php _e( 'Menu', 'fleurs' ); ?></h1>
-				<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'fleurs' ); ?></a>
-				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-				<aside id="search" class="pull-left widget_search">
-					<?php get_search_form(); ?>
-				</aside>
-			</nav><!-- #site-navigation -->
+			<!-- END slider -->
 		</header><!-- #masthead -->
 	<div id="content" class="site-content">

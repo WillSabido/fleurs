@@ -30,10 +30,10 @@ and Blueprint http://www.blueprintcss.org/
 3.0 - Elements
 4.0 - Inputs and buttons
 5.0 - Navigation
-	5.1 - Links
-	5.2 - Menus
-		5.2.1 - Bootstrap navbar
-		5.2.3 - Language menu
+	5.1 - Menus
+		5.1.1 - Bootstrap navbar
+		5.1.2 - Language menu
+	5.2 - Links 
 6.0 - Accessibility
 7.0 - Alignments
 8.0 - Clearings
@@ -138,7 +138,7 @@ button,
 input,
 select,
 textarea {
-	color: #404040;
+	color: rgb(8, 9, 44);
 	font-family: 'Snippet', 'Poiret One', 'Open Sans', 'Helvetica', sans-serif;
 	font-size: 16px;
 	font-size: 1.6rem;
@@ -449,46 +449,26 @@ ul.menu.nav-menu>li:first-child {
   color: floralwhite;
 }
 /*--------------------------------------------------------------
-5.1 Links
---------------------------------------------------------------*/
-a {
-	color: rgba(210, 157, 36, 0.9);
-}
-a:visited {
-	color: rgba(8, 9, 44, 0.5);
-}
-a:hover,
-a:focus,
-a:active {
-	text-decoration: none;
-	color: rgb(8, 9, 44);
-	-webkit-transition: color 800ms ease-in-out;
-	-moz-transition: color 800ms ease-in-out;
-	-ms-transition: color 800ms ease-in-out;
-	-o-transition: color 800ms ease-in-out;
-	transition: color 800ms ease-in-out;
-}
-a:visited.btn, a:active.btn {
-	color: White;
-}
-a.btn span {
-	position: relative;
-	left: -25px;
-	top: 3px;
-}
-/*--------------------------------------------------------------
-5.2 Menus
+5.1 Menus
 --------------------------------------------------------------*/
 .main-navigation {
 	clear: both;
 	display: block;
 	float: left;
 	width: 100%;
-	border-top: 2px solid rgba(210, 157, 36, 0.8);
+	border-bottom: 2px solid rgba(210, 157, 36, 0.8);
+	border-top: none;
 	font-size: large;
 }
+nav#site-navigation.main-navigation.affix {
+	border-top: 2px solid rgba(210, 157, 36, 0.8);
+	border-bottom: none;
+}
+nav#fade-in-site-navigation {
+	display: none;
+}
 .main-navigation a {
-	font-family: 'Spirax', cursive;
+	font-family: 'Comfortaa', 'Poiret One', sans-serif;
 }
 .main-navigation ul {
 	list-style: none;
@@ -506,7 +486,7 @@ nav#site-navigation ul.sub-menu>li:first-child {
 	position: relative;
 	border-bottom: 8px solid rgba(210, 157, 36, 1);
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-	-webkit-border-top-left-radius: 5px 15px;
+/*	-webkit-border-top-left-radius: 5px 15px;
 	-webkit-border-top-right-radius: 45px 35px;
 	-webkit-border-bottom-right-radius: 5px 10px;
 	-webkit-border-bottom-left-radius: 45px 50px;
@@ -517,11 +497,16 @@ nav#site-navigation ul.sub-menu>li:first-child {
 	border-top-left-radius: 5px 15px;
 	border-top-right-radius: 45px 35px;
 	border-bottom-right-radius: 5px 10px;
-	border-bottom-left-radius: 45px 50px;
+	border-bottom-left-radius: 45px 50px; */
 }
 .main-navigation li:hover {
 	background-color: rgba(210, 157, 36, 0.4);
 	text-shadow: 1px 1px 3px darkslategrey, -1px -1px 1px whitesmoke;
+	-webkit-transition: background color 800ms ease-in-out;
+	-moz-transition: background color 800ms ease-in-out;
+	-ms-transition: background color 800ms ease-in-out;
+	-o-transition: background color 800ms ease-in-out;
+	transition: background color 800ms ease-in-out;
 }
 .main-navigation a {
 	display: block;
@@ -566,7 +551,7 @@ nav#site-navigation ul.sub-menu>li:first-child {
 		display: block;
 	}
 
-	.main-navigation ul {
+	.main-navigation ul, nav#fade-in-site-navigation {
 		display: none;
 	}
 }
@@ -601,32 +586,75 @@ ul.menu>li:nth-child(1) {
 	text-shadow: 0 0 2px 2px rgba(244, 244, 244, 0.6);
 }
 /*--------------------------------------------------------------
-5.2.1 Bootstrap Navbar
+5.1.1 Bootstrap Navbar
 --------------------------------------------------------------*/
 .navbar {
-	min-height: 42px;
-	border: none;
 	border-radius: 0px;
 	margin-bottom: 0px;
 }
 /*--------------------------------------------------------------
-5.2.2 Language Menu
+5.1.2 Language Menu
 --------------------------------------------------------------*/
 div.language-menu {
 	z-index: 100;
 	position: absolute;
-	top: 30px;
-	right: 0px;
+	top: 0px;
+	right: 10px;
+}
+.language-menu img {
+	opacity: 0.7;
+	-webkit-border-radius: 0px 20px 3px 20px;
+	-moz-border-radius: 0px 20px 3px 20px;
+	border-radius: 0px 20px 3px 20px;
+	-webkit-border-top-right-radius: 40px 10px;
+	-moz-border-top-right-radius: 40px 10px;
+	border-top-right-radius: 40px 10px;
+	border-bottom: 4px solid rgb(210, 157, 36);
+	border-top: 1px solid rgba(210, 157, 36, 0.4);
+	top: 0px;
+}
+.language-menu a:hover img {
+	transition: opacity 800ms ease-in-out;
+	opacity: 1;
+	border-bottom: 4px solid rgba(210, 157, 36, 0.8);
 }
 div.language-menu a {
 	color: rgba(210, 157, 36, 0.9);
-	font-family: Montserrat, sans-serif;
+	font-family: 'Snippet', sans-serif;
 }
 div.language-menu ul {
 	list-style: none;
 }
 ul.menu {
 	list-style: none;
+}
+/*--------------------------------------------------------------
+5.2 Links
+--------------------------------------------------------------*/
+a {
+	color: rgba(210, 157, 36, 1);
+}
+a:visited {
+	color: rgba(210, 157, 36, 0.8);
+}
+a:hover,
+a:focus,
+a:active {
+	text-decoration: none;
+	color: rgb(8, 9, 44);
+	-webkit-transition: color 800ms ease-in-out;
+	-moz-transition: color 800ms ease-in-out;
+	-ms-transition: color 800ms ease-in-out;
+	-o-transition: color 800ms ease-in-out;
+	transition: color 800ms ease-in-out;
+}
+a:visited.btn, a:active.btn {
+	color: White;
+}
+a.btn span {
+	position: relative;
+	left: -25px;
+	top: 3px;
 }
 /*--------------------------------------------------------------
 6.0 Accessibility
@@ -712,8 +740,8 @@ ul.menu {
 aside.header-widget {
 	z-index: 1;
 	position: absolute;
-	top: 0px;
-	right: 10%;
+	top: 10px;
+	right: 0px;
 }
 /* footer widget area */
 .widget {
@@ -774,6 +802,9 @@ h1.widget-title {
 	box-shadow:inset 1px 1px 5px 1px rgba(0, 0, 0, .1);
 	color:#333;
 	text-indent: 0;
+	outline-color: aliceblue;
+	outline-style: none;
+	outline-width: 0px;
 }
 .widget_search .search-submit {
 	display: none;
@@ -812,7 +843,7 @@ div#secondary {
 }
 div#secondary aside {
 	float: left;
-	margin-bottom: 8%;
+	margin-bottom: 8px;
 }
 aside ul, aside ul li, aside#nav_menu_2 ul, ul#menu-site-map, ul#menu-site-map li, ul#menu-site-map li>ul, aside div.menu-main-navigation-container ul li {
 	border-left: none;
@@ -822,7 +853,7 @@ aside ul, aside ul li, aside#nav_menu_2 ul, ul#menu-site-map, ul#menu-site-map l
 	list-style-type: none;
 	margin-left: 5%;
 }
-aside#text-3.widget_text, aside#text-4, aside#text-2 {
+aside#text-3.widget_text, aside#text-4, aside#text-2, aside#text-5 {
 	text-align: -webkit-center;
 	text-align: center;
 }
@@ -872,9 +903,8 @@ div.site-branding {
 	left: 50px;
 }
 h1.site-title {
-	font-family: Griffy;
+	font-family: 'Comfortaa', sans-serif;
 	text-shadow: 2px -1px 3px aliceblue;
-	font-size: 500%;
 }
 h2.site-description {
 	text-shadow: 1px -1px 1px aliceblue;
@@ -910,11 +940,14 @@ header#masthead {
 /*	background: url('images/fleurs-header-bg.jpg'); */
 /*	background-repeat: repeat-x;*/
 }
-header img {
+div.header-image {
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: -46px;
+}
+header img#header-image {
 	z-index: 0;
-	position: absolute;
-	top: 20px;
-	right: 40px;
 }
 .panel-group p {
   margin-bottom: 0px;
@@ -932,6 +965,37 @@ body.category-services article, body.tag article, body.archive article, body.sin
 }
 body.home article {
 	background: none;
+	margin-top: 0px;
+}
+/* tab panel boxes */
+.boxes {
+	position: relative;
+	top: -40px;
+}
+ul.nav.nav-pills {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+ul.nav.nav-pills li {
+	width: 24%;
+	text-align: -webkit-center;
+	text-align: center;
+}
+ul.nav-pills div.box {
+	margin-bottom: 0px;
+	align-content: center;
+	align-items: center;
+	text-align: -webkit-center;
+	text-align: center;
+}
+.box.well {
+	height: 160px;
+	background: none;
+	border: none;
+}
+ul.nav.nav-pills a:focus {
+  outline-width: 0px;
 }
 /*----- Mobile edits -------*/
 @media only screen and (max-device-width: 667px) { 
@@ -1196,6 +1260,9 @@ div.tab-content i {
       border-top-color: rgb(8, 9, 44);
 }
 /* Font Awesome edit */
+h1 i {
+	text-shadow: 1px 1px 0px whitesmoke, -1px -1px 2px darkgoldenrod;
+}
 body.page-id-27 div#primary.content-area i.fa {
 	left: 0px;
 }

@@ -32,13 +32,12 @@ function ws_fleurs_setup() {
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
-
+	
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
-	//add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
@@ -50,7 +49,7 @@ function ws_fleurs_setup() {
 	add_theme_support( 'post-thumbnails' ); 
 
 	// Enable support for Post Formats.
-	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'image', 'gallery', 'video', 'quote', 'link' ) );
 
 	// Setup the WordPress core custom background feature.
 	add_theme_support( 'custom-background', apply_filters( 'ws_fleurs_custom_background_args', array(
@@ -59,7 +58,11 @@ function ws_fleurs_setup() {
 	) ) );
 
 	// Enable support for HTML5 markup.
-	add_theme_support( 'html5', array( 'comment-list', 'search-form', 'comment-form', ) );
+	add_theme_support( 'html5', array( 'comment-list', 'search-form', 'comment-form', 'gallery', 'caption' ) );
+
+	// Makes theme translation ready
+	load_theme_textdomain( 'fleurs', get_template_directory() . '/languages' );
+
 }
 endif; // ws_fleurs_setup
 add_action( 'after_setup_theme', 'ws_fleurs_setup' );
@@ -68,6 +71,7 @@ add_action( 'after_setup_theme', 'ws_fleurs_setup' );
  * Register widgetized area and update sidebar with default widgets.
  */
 function ws_fleurs_widgets_init() {
+	$title_tag = ws_fleurs_get_option( 'widget_title_tag' );
 	register_sidebar( array(
 		'name'          => __( 'Sidebar', 'fleurs' ),
 		'id'            => 'sidebar-1',
@@ -84,6 +88,24 @@ function ws_fleurs_widgets_init() {
 		'before_title'  => '<h1 class="widget-title">',
 		'after_title'   => '</h1>',
 	) );
+	$columns = ws_fleurs_get_option( 'boxes_columns' );
+	if( 1 == $columns )
+		$grid_class = 'onecol';
+	elseif( 2 == $columns )
+		$grid_class = 'twocol';
+	elseif( 3 == $columns )
+		$grid_class = 'threecol';
+	elseif( 4 == $columns )
+		$grid_class = 'fourcol';
+	register_sidebar(
+		array(
+			'name' => 'Boxes',
+			'before_widget' => '<div class="column ' . $grid_class . '"><aside id="%1$s" class="widget %2$s">',
+			'after_widget' => '</aside><!-- .widget --></div>',
+			'before_title' => '<' . $title_tag . ' class="widget-title">',
+			'after_title' => '</' . $title_tag . '>'
+		)
+	);
 	register_sidebar( array(
 		'name'          => __( 'Footer', 'fleurs' ),
 		'id'            => 'footer-1',
@@ -94,6 +116,170 @@ function ws_fleurs_widgets_init() {
 	) );
 }
 add_action( 'widgets_init', 'ws_fleurs_widgets_init' );
+
+if ( ! function_exists( 'ws_fleurs_default_options' ) ) :
+/**
+ * Returns an array of theme default options.
+ *
+ * @since Fleurs 0.2
+ */
+function ws_fleurs_default_options() {
+	$options = array(
+		'home_page_excerpts' => 2,
+		'slider' => true,
+		'location' => true,
+		'retina_header' => false,
+		'crop_thumbnails' => false,
+		'lightbox' => true,
+		'facebook_link' => '',
+		'twitter_link' => '',
+		'pinterest_link' => '',
+		'flickr_link' => '',
+		'youtube_link' => '',
+		'vimeo_link' => '',
+		'googleplus_link' => '',
+		'dribble_link' => '',
+		'linkedin_link' => '',
+		'portfolio_cat' => -1,
+		'portfolio_filter' => true,
+		'portfolio_excerpts' => 0,
+		'portfolio_archive_excerpts' => 0,
+		'portfolio_columns' => 3,
+		'portfolio_meta' => true,
+		'blog_exclude_portfolio' => true,
+		'location' => true,
+		'archive_excerpts' => 0,
+		'posts_nav' => 'infinite',
+		'posts_nav_labels' => 'older/newer',
+		'fancy_dropdowns' => true,
+		'facebook' => true,
+		'twitter' => true,
+		'google' => true,
+		'pinterest' => true,
+		'author_box' => false,
+		'copyright_notice' => '&copy; %year% %blogname%',
+		'theme_credit_link' => false,
+		'author_credit_link' => false,
+		'wordpress_credit_link' => false,
+		'page_background' => '#ffffff',
+		'menu_background' => '#111',
+		'submenu_background' => '#333',
+		'sidebar_wide_background' => '#eee',
+		'content_background' => '#fff',
+		'post_meta_background' => '#fcfcfc',
+		'footer_area_background' => '#222',
+		'footer_background' => '#111',
+		'layout' => 'content-sidebar',
+		'layout_columns' => 3,
+		'boxes_columns' => 3,
+		'footer_columns' => 3,
+		'hide_sidebar' => false,
+		'hide_footer_area' => false,
+		'user_css' => '',
+		'body_font' => 'open-sans',
+		'headings_font' => 'oswald',
+		'content_font' => 'open-sans',
+		'body_font_size' => '13',
+		'body_font_size_unit' => 'px',
+		'body_line_height' => '1.62',
+		'body_line_height_unit' => 'em',
+		'h1_font_size' => '36',
+		'h1_font_size_unit' => 'px',
+		'h2_font_size' => '32',
+		'h2_font_size_unit' => 'px',
+		'h3_font_size' => '24',
+		'h3_font_size_unit' => 'px',
+		'h4_font_size' => '18',
+		'h4_font_size_unit' => 'px',
+		'headings_line_height' => '1.62',
+		'headings_line_height_unit' => 'em',
+		'content_font_size' => '15',
+		'content_font_size_unit' => 'px',
+		'content_line_height' => '1.62',
+		'content_line_height_unit' => 'em',
+		'mobile_font_size' => '17',
+		'mobile_font_size_unit' => 'px',
+		'mobile_line_height' => '1.62',
+		'mobile_line_height_unit' => 'em',
+		'body_color' => '#333',
+		'headings_color' => '#333',
+		'content_color' => '#333',
+		'links_color' => '#21759b',
+		'links_hover_color' => '#d54e21',
+		'menu_color' => '#f0f0f0',
+		'menu_hover_color' => '#fff',
+		'sidebar_color' => '#ccc',
+		'sidebar_title_color' => '#ccc',
+		'sidebar_links_color' => '#7597B9',
+		'footer_color' => '#ccc',
+		'footer_title_color' => '#e0e0e0',
+		'copyright_color' => '#ccc',
+		'copyright_links_color' => '#7597B9',
+		'home_site_title_tag' => 'h1',
+		'home_desc_title_tag' => 'div',
+		'home_post_title_tag' => 'h2',
+		'archive_site_title_tag' => 'div',
+		'archive_desc_title_tag' => 'div',
+		'archive_location_title_tag' => 'h1',
+		'archive_post_title_tag' => 'h2',
+		'single_site_title_tag' => 'div',
+		'single_desc_title_tag' => 'div',
+		'single_post_title_tag' => 'h1',
+		'single_comments_title_tag' => 'h2',
+		'single_respond_title_tag' => 'h2',
+		'widget_title_tag' => 'h3',
+	);
+	return $options;
+}
+endif;
+
+if ( ! function_exists( 'ws_fleurs_get_option' ) ) :
+/**
+ * Used to output theme options is an elegant way
+ *
+ * @uses get_option() To retrieve the options array
+ *
+ * @since Fleurs 0.2
+ */
+function ws_fleurs_get_option( $option ) {
+	global $ws_fleurs_options, $ws_fleurs_default_options;
+	if( ! isset( $ws_fleurs_default_options ) )
+		$ws_fleurs_default_options = ws_fleurs_default_options();
+	if( ! isset( $ws_fleurs_options ) )
+		$ws_fleurs_options = get_option( 'ws_fleurs_theme_options', $ws_fleurs_default_options );
+	if( ! isset( $ws_fleurs_options[ $option ] ) )
+		return $ws_fleurs_default_options[ $option ];
+	return $ws_fleurs_options[ $option ];
+}
+endif;
+
+if ( ! function_exists( 'ws_fleurs_body_class' ) ) :
+/**
+ * Adds template names to body_class filter
+ *
+ * The custom layouts are shared with the custom templates
+ * and use the same style declarations
+ * @since Fleurs 0.2
+ */
+function ws_fleurs_body_class( $classes ) {
+	if( ! is_page_template() ) {
+		$default_options = ws_fleurs_default_options();
+		if( ( 'full-width' == ws_fleurs_get_option( 'layout' ) ) || ( ! is_active_sidebar( 2 ) && ! is_active_sidebar( 3 ) && ! is_active_sidebar( 4 ) && ! is_active_sidebar( 5 ) ) )
+			$classes[] = 'page-template-template-full-width-php';
+		elseif( 'sidebar-content' == ws_fleurs_get_option( 'layout' ) )
+			$classes[] = 'page-template-template-sidebar-content-php';
+		elseif( 'sidebar-content-sidebar' == ws_fleurs_get_option( 'layout' ) )
+			$classes[] = 'page-template-template-sidebar-content-sidebar-php';
+		elseif( 'content-sidebar-half' == ws_fleurs_get_option( 'layout' ) )
+			$classes[] = 'page-template-template-content-sidebar-half-php';
+		elseif( 'sidebar-content-half' == ws_fleurs_get_option( 'layout' ) )
+			$classes[] = 'page-template-template-sidebar-content-half-php';
+		elseif( 'no-sidebars' == ws_fleurs_get_option( 'layout' ) )
+			$classes[] = 'page-template-template-no-sidebars-php';
+	}
+	return $classes;
+}
+endif;
 
 /**
  * Enqueue scripts and styles.
@@ -181,6 +367,6 @@ if (!is_admin()) {
 
 } // end if !is_admin
 /**
- * Enable shortcodes in widgets for testimonial slider
+ * Uncomment to enable shortcodes in widgets for testimonial slider
  */
-add_filter('widget_text', 'do_shortcode');
+// add_filter('widget_text', 'do_shortcode');

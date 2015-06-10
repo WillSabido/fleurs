@@ -2,7 +2,7 @@
 /**
  * The Header containing the header widget areas.
  *
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 ?>
 	<div id="secondary" class="widget-area container-fluid" role="complementary">

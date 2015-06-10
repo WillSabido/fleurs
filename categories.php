@@ -2,7 +2,7 @@
 /**
  * The Template for displaying category pages.
  *
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 
 get_header(); ?>

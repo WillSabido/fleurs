@@ -2,7 +2,7 @@
 /**
  * The Footbar containing the footer widget areas.
  *
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 ?>
 	<div id="secondary" class="widget-area container-fluid" role="complementary">

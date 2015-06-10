@@ -4,7 +4,7 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 
 get_header(); ?>

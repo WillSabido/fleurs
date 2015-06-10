@@ -1,8 +1,8 @@
 <?php
 /**
- * webisabi-fleurs functions and definitions
+ * ws_fleurs functions and definitions
  *
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 
 /**
@@ -22,16 +22,16 @@ if ( ! function_exists( 'ws_fleurs_setup' ) ) :
  */
 function ws_fleurs_setup() {
 
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on webisabi-fleurs, use a find and replace
-	 * to change 'fleurs' to the name of your theme in all the template files
-	 */
-	load_theme_textdomain( 'fleurs', get_template_directory() . '/languages' );
-
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
+
+	/*
+	 * Let WordPress manage the document title.
+	 * By adding theme support, we declare that this theme does not use a
+	 * hard-coded <title> tag in the document head, and expect WordPress to
+	 * provide it for us.
+	 */
+	add_theme_support( 'title-tag' );
 	
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
@@ -39,17 +39,37 @@ function ws_fleurs_setup() {
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
 
-	// This theme uses wp_nav_menu() in one location.
+	add_theme_support( 'post-thumbnails' ); 
+
+
+	// This theme uses wp_nav_menu() for primary navigation and language switching.
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'fleurs' ),
 		'language'=> __( 'Language Menu', 'fleurs' )
 	) );
-	
-	// Enable support for featured images
-	add_theme_support( 'post-thumbnails' ); 
 
-	// Enable support for Post Formats.
-	add_theme_support( 'post-formats', array( 'aside', 'image', 'gallery', 'video', 'quote', 'link' ) );
+	/*
+	 * Switch default core markup for search form, comment form, and comments
+	 * to output valid HTML5.
+	 */
+	add_theme_support( 'html5', array(
+		'search-form',
+		'comment-form',
+		'comment-list',
+		'gallery',
+		'caption',
+	) );
+
+	/*
+	 * Enable support for Post Formats.
+	 * See http://codex.wordpress.org/Post_Formats
+	 */
+	add_theme_support( 'post-formats', array( 
+		'aside',
+		'image',  
+		'video', 
+		'quote', 
+		'link' ) );
 
 	// Setup the WordPress core custom background feature.
 	add_theme_support( 'custom-background', apply_filters( 'ws_fleurs_custom_background_args', array(
@@ -57,15 +77,30 @@ function ws_fleurs_setup() {
 		'default-image' => '',
 	) ) );
 
-	// Enable support for HTML5 markup.
-	add_theme_support( 'html5', array( 'comment-list', 'search-form', 'comment-form', 'gallery', 'caption' ) );
-
-	// Makes theme translation ready
-	load_theme_textdomain( 'fleurs', get_template_directory() . '/languages' );
-
 }
 endif; // ws_fleurs_setup
 add_action( 'after_setup_theme', 'ws_fleurs_setup' );
+
+	/*
+	 * Make theme available for translation.
+	 * Translations can be filed in the /languages/ directory.
+	 * If you're building a theme based on ws_fleurs, use a find and replace
+	 * to change 'fleurs' to the name of your theme in all the template files
+	 */
+
+function fleurs_translate_theme() {
+    // Load Theme textdomain
+    load_theme_textdomain('fleurs', get_template_directory() . '/languages');
+
+    // Include Theme text translation file
+    $locale = get_locale();
+    $locale_file = get_template_directory() . "/languages/$locale.php";
+    if ( is_readable( $locale_file ) ) {
+        require_once( $locale_file );
+    }
+}
+
+add_action( 'after_setup_theme', 'fleurs_translate_theme' );
 
 /**
  * Register widgetized area and update sidebar with default widgets.
@@ -73,17 +108,25 @@ add_action( 'after_setup_theme', 'ws_fleurs_setup' );
 function ws_fleurs_widgets_init() {
 	$title_tag = ws_fleurs_get_option( 'widget_title_tag' );
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'fleurs' ),
-		'id'            => 'sidebar-1',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s col-xs-12 col-md-4">',
+		'name'          => __( 'Header Left', 'fleurs' ),
+		'id'            => 'header-1',
+		'before_widget' => '<aside id="%1$s" class="widget header-widget-left %2$s col-xs-12 col-md-4 pull-left">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h1 class="widget-title">',
 		'after_title'   => '</h1>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Header', 'fleurs' ),
-		'id'            => 'header-1',
-		'before_widget' => '<aside id="%1$s" class="widget header-widget %2$s col-xs-12 col-md-4">',
+		'name'          => __( 'Header Right', 'fleurs' ),
+		'id'            => 'header-2',
+		'before_widget' => '<aside id="%1$s" class="widget header-widget-right %2$s col-xs-12 col-md-4 pull-right">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h1 class="widget-title">',
+		'after_title'   => '</h1>',
+	) );
+	register_sidebar( array(
+		'name'          => __( 'Sidebar', 'fleurs' ),
+		'id'            => 'sidebar-1',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s col-xs-12 col-md-4">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h1 class="widget-title">',
 		'after_title'   => '</h1>',
@@ -97,15 +140,14 @@ function ws_fleurs_widgets_init() {
 		$grid_class = 'threecol';
 	elseif( 4 == $columns )
 		$grid_class = 'fourcol';
-	register_sidebar(
-		array(
-			'name' => 'Boxes',
-			'before_widget' => '<div class="column ' . $grid_class . '"><aside id="%1$s" class="widget %2$s">',
-			'after_widget' => '</aside><!-- .widget --></div>',
-			'before_title' => '<' . $title_tag . ' class="widget-title">',
-			'after_title' => '</' . $title_tag . '>'
-		)
-	);
+	register_sidebar( array(
+		'name' 			=> __( 'Boxes', 'fleurs' ),
+		'id'			=> 'boxes',
+		'before_widget' => '<div class="column ' . $grid_class . '"><aside id="%1$s" class="widget %2$s">',
+		'after_widget' 	=> '</aside><!-- .widget --></div>',
+		'before_title'	=> '<' . $title_tag . ' class="widget-title">',
+		'after_title'	=> '</' . $title_tag . '>'
+	) );
 	register_sidebar( array(
 		'name'          => __( 'Footer', 'fleurs' ),
 		'id'            => 'footer-1',

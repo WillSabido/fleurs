@@ -2,7 +2,7 @@
 /**
  * The template for displaying Search Results pages.
  *
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 
 get_header(); ?>
@@ -23,7 +23,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php fleurs_paging_nav(); ?>
+			<?php ws_fleurs_paging_nav(); ?>
 
 		<?php else : ?>
 

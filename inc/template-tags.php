@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 
 if ( ! function_exists( 'ws_fleurs_paging_nav' ) ) :

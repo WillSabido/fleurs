@@ -2,7 +2,7 @@
 /**
  * The Template for displaying all single posts.
  *
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 
 get_header(); ?>

@@ -1,6 +1,6 @@
 <?php
 /**
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 ?>
 

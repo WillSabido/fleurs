@@ -1,8 +1,8 @@
 <?php
 /**
- * webisabi-fleurs Theme Customizer
+ * ws_fleurs Theme Customizer
  *
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 
 /**

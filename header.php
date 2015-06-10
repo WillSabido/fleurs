@@ -4,7 +4,7 @@
  *
  * Displays all of the <head> section and everything up till <div id="content">
  * cut fonts <link href='http://fonts.googleapis.com/css?family=Poiret+One|Petit+Formal+Script|La+Belle+Aurore|Waiting+for+the+Sunrise|Indie+Flower|Dancing+Script:400,700|Lobster+Two:400,400italic,700|Handlee|Oregano:400,400italic|Griffy|Spirax|Montserrat:400,700' rel='stylesheet' type='text/css'>
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -38,8 +38,12 @@
 			</a>
 			</div>
 			<?php endif; // End header image check. ?>
+			<aside id="search" class="pull-left widget_search header-search">
+				<?php get_search_form(); ?>
+			</aside>
   			<?php wp_nav_menu( array( 'theme_location' => 'language', 'fleurs', 'container_class' => 'language-menu' ) ); ?>
   			<?php dynamic_sidebar( 'header-1' ); ?>
+			<?php dynamic_sidebar( 'header-2' ); ?>
 			<!-- END Header image -->
 			<div class="site-branding">
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
@@ -49,16 +53,7 @@
 				<h1 class="menu-toggle"><?php _e( 'Menu', 'fleurs' ); ?></h1>
 				<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'fleurs' ); ?></a>
 				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-				<aside id="search" class="pull-left widget_search">
-					<?php get_search_form(); ?>
-				</aside>
 			</nav><!-- #site-navigation -->
-			<nav id="fade-in-site-navigation" class="navbar navbar-default main-navigation fade-in" role="navigation" data-spy="affix" data-offset-top="262">
-				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-				<aside id="search" class="pull-left widget_search">
-					<?php get_search_form(); ?>
-				</aside>
-			</nav>
 			<!-- slider on homepage, about, edibles pages, else other slider -->
 			<?php if ( is_home() || is_front_page() ) : if (!is_admin()) {
 				echo do_shortcode('[crellyslider alias="homepage"]');

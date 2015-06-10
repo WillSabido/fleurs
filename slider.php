@@ -2,7 +2,7 @@
 /**
  * The Slider containing the Bootstrap carousel.
  *
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 ?>
 <div id="ws-carousel" class="carousel slide" data-ride="carousel">

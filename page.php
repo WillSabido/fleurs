@@ -7,7 +7,7 @@
  * and that other 'pages' on your WordPress site will use a
  * different template.
  *
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 
 get_header(); ?>

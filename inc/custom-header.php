@@ -12,7 +12,7 @@
 	<?php endif; // End header image check. ?>
 
  *
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 
 /**
@@ -22,7 +22,7 @@
  * @uses ws_fleurs_admin_header_style()
  * @uses ws_fleurs_admin_header_image()
  *
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 function ws_fleurs_custom_header_setup() {
 	add_theme_support( 'custom-header', apply_filters( 'ws_fleurs_custom_header_args', array(

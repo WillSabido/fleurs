@@ -4,7 +4,7 @@
  *
  * Contains the closing of the #content div and all content after
  *
- * @package webisabi-fleurs
+ * @package ws_fleurs
  */
 ?>
 
@@ -19,7 +19,19 @@
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
-
+<!-- fade in nav, here to avoid page load rejumble -->
+			<nav id="fade-in-site-navigation" class="navbar main-navigation fade-in" role="navigation" data-spy="affix" data-offset-top="262">
+				<div id="menu-logo">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<img id="menu-image" src="<?php header_image(); ?>" width="auto" height="50px" alt="<?php echo bloginfo('name'); ?> logo">
+					</a>
+				</div>
+				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+				<aside id="menu-search" class="pull-left widget_search">
+					<?php get_search_form(); ?>
+				</aside>
+			</nav>
+<!-- END fade-in nav -->
 <?php wp_footer(); ?>
 
 <!-- Carousel autoplay fix -->

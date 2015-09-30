@@ -15,12 +15,12 @@ Template Name: Content / Sidebar Half
 							<?php the_content(); ?>
 							<div class="clear"></div>
 						</div><!-- .entry-content -->
-						<?php wp_link_pages( array( 'before' => '<footer class="entry-utility"><p class="post-pagination">' . __( 'Pages:', 'pinboard' ), 'after' => '</p></footer><!-- .entry-utility -->' ) ); ?>
+						<?php wp_link_pages( array( 'before' => '<footer class="entry-utility"><p class="post-pagination">' . __( 'Pages:', 'fleurs' ), 'after' => '</p></footer><!-- .entry-utility -->' ) ); ?>
 					</div><!-- .entry -->
 					<?php comments_template(); ?>
 				</article><!-- .post -->
 			<?php else : ?>
-				<?php pinboard_404(); ?>
+				<?php ws_fleurs_404(); ?>
 			<?php endif; ?>
 		</section><!-- #content -->
 		<?php get_sidebar(); ?>

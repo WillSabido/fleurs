@@ -3,8 +3,8 @@
 Template Name: Sidebar / Content
 */
 ?><?php get_header(); ?>
-	<?php global $pinboard_page_template; ?>
-	<?php $pinboard_page_template = 'template-sidebar-content.php'; ?>
+	<?php global $ws_fleurs_page_template; ?>
+	<?php $ws_fleurs_page_template = 'template-sidebar-content.php'; ?>
 	<div id="container">
 		<section id="content" class="column twothirdcol">
 			<?php if( have_posts() ) : the_post(); ?>
@@ -17,12 +17,12 @@ Template Name: Sidebar / Content
 							<?php the_content(); ?>
 							<div class="clear"></div>
 						</div><!-- .entry-content -->
-						<?php wp_link_pages( array( 'before' => '<footer class="entry-utility"><p class="post-pagination">' . __( 'Pages:', 'pinboard' ), 'after' => '</p></footer><!-- .entry-utility -->' ) ); ?>
+						<?php wp_link_pages( array( 'before' => '<footer class="entry-utility"><p class="post-pagination">' . __( 'Pages:', 'fleurs' ), 'after' => '</p></footer><!-- .entry-utility -->' ) ); ?>
 					</div><!-- .entry -->
 					<?php comments_template(); ?>
 				</article><!-- .post -->
 			<?php else : ?>
-				<?php pinboard_404(); ?>
+				<?php ws_fleurs_404(); ?>
 			<?php endif; ?>
 		</section><!-- #content -->
 		<?php get_sidebar(); ?>

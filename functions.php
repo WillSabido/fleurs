@@ -40,6 +40,9 @@ function ws_fleurs_setup() {
 	 */
 
 	add_theme_support( 'post-thumbnails' ); 
+	add_image_size( 'gallery-1-thumb', 432, 432, 1 );
+	add_image_size( 'gallery-2-thumb', 268, 268, 1 );
+	add_image_size( 'gallery-3-thumb', 268, 164, 1 );
 
 
 	// This theme uses wp_nav_menu() for primary navigation and language switching.
@@ -66,7 +69,8 @@ function ws_fleurs_setup() {
 	 */
 	add_theme_support( 'post-formats', array( 
 		'aside',
-		'image',  
+		'image', 
+		'gallery', 
 		'video', 
 		'quote', 
 		'link' ) );
@@ -145,8 +149,8 @@ function ws_fleurs_widgets_init() {
 		'id'			=> 'boxes',
 		'before_widget' => '<div class="column ' . $grid_class . '"><aside id="%1$s" class="widget %2$s">',
 		'after_widget' 	=> '</aside><!-- .widget --></div>',
-		'before_title'	=> '<' . $title_tag . ' class="widget-title">',
-		'after_title'	=> '</' . $title_tag . '>'
+		'before_title'	=> '<h2 class="widget-title">',
+		'after_title'	=> '</h2>'
 	) );
 	register_sidebar( array(
 		'name'          => __( 'Footer', 'fleurs' ),
@@ -156,6 +160,16 @@ function ws_fleurs_widgets_init() {
 		'before_title'  => '<h1 class="widget-title">',
 		'after_title'   => '</h1>',
 	) );
+	register_sidebar(
+		array(
+			'name' => '404 Page',
+			'description' => 'Displays on 404 Pages in the content area.',
+			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+			'after_widget' => '</aside><!-- .widget -->',
+			'before_title' => '<' . $title_tag . ' class="widget-title">',
+			'after_title' => '</' . $title_tag . '>'
+		)
+	);
 }
 add_action( 'widgets_init', 'ws_fleurs_widgets_init' );
 
@@ -219,7 +233,7 @@ function ws_fleurs_default_options() {
 		'hide_footer_area' => false,
 		'user_css' => '',
 		'body_font' => 'open-sans',
-		'headings_font' => 'oswald',
+		'headings_font' => 'comfortaa',
 		'content_font' => 'open-sans',
 		'body_font_size' => '13',
 		'body_font_size_unit' => 'px',
@@ -368,6 +382,211 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+
+if ( ! function_exists( 'ws_fleurs_gallery_shortcode' ) ) :
+/**
+ * The Gallery shortcode.
+ *
+ * This implements the functionality of the Gallery Shortcode for displaying
+ * WordPress images on a post. Replaced the default gallery style with HTML 5 markup.
+ * Also disables inline styling by default.
+ *
+ * @since ws_fleurs 0.3
+ *
+ * @param string $output Empty string passed by core function.
+ * @param array $attr Attributes attributed to the shortcode.
+ * @return string HTML content to display gallery.
+ */
+function ws_fleurs_gallery_shortcode( $output, $attr ) {
+	// Allow use of Jetpack Tiled Galleries Module
+	if( class_exists( 'Jetpack' ) && in_array( 'tiled-gallery', Jetpack::get_active_modules() ) )
+		return $output;
+	global $post, $wp_locale;
+	static $instance = 0;
+	$instance++;
+
+	// We're trusting author input, so let's at least make sure it looks like a valid orderby statement
+	if ( isset( $attr['orderby'] ) ) {
+		$attr['orderby'] = sanitize_sql_orderby( $attr['orderby'] );
+		if ( !$attr['orderby'] )
+			unset( $attr['orderby'] );
+	}
+
+	extract( shortcode_atts( array(
+		'order'      => 'ASC',
+		'orderby'    => 'menu_order ID',
+		'id'         => $post->ID,
+		'itemtag'    => 'figure',
+		'icontag'    => 'span',
+		'captiontag' => 'figcaption',
+		'columns'    => 3,
+		'size'       => 'thumbnail',
+		'include'    => '',
+		'exclude'    => ''
+	), $attr ) );
+
+	$id = intval($id);
+	if ( 'RAND' == $order )
+		$orderby = 'none';
+
+	if ( !empty($include) ) {
+		$include = preg_replace( '/[^0-9,]+/', '', $include );
+		$_attachments = get_posts( array( 'include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby ) );
+
+		$attachments = array();
+		foreach ( $_attachments as $key => $val ) {
+			$attachments[$val->ID] = $_attachments[$key];
+		}
+	} elseif ( ! empty( $exclude ) ) {
+		$exclude = preg_replace( '/[^0-9,]+/', '', $exclude );
+		$attachments = get_children( array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+	} else {
+		$attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+	}
+
+	if ( empty( $attachments ) )
+		return '';
+
+	if ( is_feed() ) {
+		$output = "\n";
+		foreach ( $attachments as $att_id => $attachment )
+			$output .= wp_get_attachment_link($att_id, $size, true) . "\n";
+		return $output;
+	}
+
+	$itemtag = tag_escape( $itemtag );
+	$captiontag = tag_escape( $captiontag );
+	$columns = intval($columns);
+	$itemwidth = $columns > 0 ? floor(90/$columns) : 90;
+	$float = is_rtl() ? 'right' : 'left';
+
+	$selector = "gallery-{$instance}";
+
+	$gallery_style = $gallery_div = '';
+	if ( apply_filters( 'use_default_gallery_style', false ) )
+		$gallery_style = "
+		<style type='text/css'>
+			#{$selector} {
+				margin: auto;
+			}
+			#{$selector} .gallery-item {
+				float: {$float};
+				width: {$itemwidth}%;
+				margin:0 1.5% 3%;
+				text-align: center;
+			}
+			#{$selector} .gallery-caption {
+				margin-left: 0;
+			}
+		</style>
+		<!-- see gallery_shortcode() in wp-includes/media.php -->";
+	$size_class = sanitize_html_class( $size );
+	$link = isset($attr['link']) && 'file' == $attr['link'] ? 'file' : 'attachment';
+	$gallery_div = "<div id='$selector' class='gallery galleryid-{$id} gallery-columns-{$columns} gallery-size-{$size_class} gallery-link-{$link}'>";
+	$output = apply_filters( 'gallery_style', $gallery_style . "\n\t\t" . $gallery_div );
+
+	$i = 0;
+	foreach ( $attachments as $id => $attachment ) {
+		$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
+
+		$output .= "<{$itemtag} class='gallery-item'>";
+		$output .= "
+			<{$icontag} class='gallery-icon'>
+				$link
+			</{$icontag}>";
+		if ( $captiontag && trim($attachment->post_excerpt) ) {
+			$output .= "
+				<{$captiontag} class='wp-caption-text gallery-caption'>
+				" . wptexturize($attachment->post_excerpt) . "
+				</{$captiontag}>";
+		}
+		$output .= "</{$itemtag}>";
+		if ( $columns > 0 && ++$i % $columns == 0 )
+			$output .= '<br style="clear: both" />';
+	}
+
+	$output .= "
+			<div class='clear'></div>
+		</div>\n";
+
+	return $output;
+}
+endif;
+
+// add_filter( 'post_gallery', 'ws_fleurs_gallery_shortcode', 10, 2 );
+
+if ( ! function_exists( 'ws_fleurs_rel_attachment' ) ) :
+function ws_fleurs_rel_attachment( $link ) {
+	return str_replace( "<a ", "<a rel='attachment' ", $link );
+}
+endif;
+
+add_filter( 'wp_get_attachment_link', 'ws_fleurs_rel_attachment' );
+
+if ( ! function_exists( 'ws_fleurs_post_gallery' ) ) :
+/**
+ * Show a gallery of images attached to the current post
+ *
+ * Used in gallery post formats
+ * Galery post formats shou;d not use the [gallery] shortcode
+ * to avoid duplicate display of the same content
+ *
+ * @uses get_posts() To retrieve attached images
+ *
+ * @since ws_fleurs 0.3
+ */
+function ws_fleurs_post_gallery() {
+	// Retrieve images attached to post
+	$args = array(
+		'numberposts' => 3,
+		'post_type' => 'attachment',
+		'post_mime_type' => 'image',
+		'post_parent' => get_the_ID()
+	);
+	$attachments = get_posts( $args );
+	// Reverse array to display them in chronological form instead of reverse chronological
+	$attachments = array_reverse( $attachments );
+	if( count( $attachments ) && ! post_password_required() ) : ?>
+		<div class="post-gallery">
+			<?php $count = 0; ?>
+			<?php foreach( $attachments as $attachment ) : ?>
+				<?php $count++; ?>
+				<figure class="post-gallery-item">
+					<a href="<?php $image = wp_get_attachment_image_src( $attachment->ID, 'full' ); echo $image[0]; ?>" class="colorbox" title="<?php echo esc_attr( get_the_title( $attachment->ID ) ); ?>" rel="attachment">
+						<?php echo wp_get_attachment_image( $attachment->ID, "gallery-{$count}-thumb" ); ?>
+					</a>
+				</figure><!-- .gallery-item -->
+			<?php endforeach; ?>
+			<div class="clear"></div>
+		</div><!-- .gallery -->
+	<?php endif;
+}
+endif;
+
+if ( ! function_exists( 'pinboard_404' ) ) :
+/**
+ * Display notification no posts were found
+ *
+ * @since ws_fleurs 0.3
+ */
+function ws_fleurs_404() { ?>
+	<div class="entry">
+		<article class="post hentry column onecol" id="post-0">
+			<h2 class="entry-title"><?php _e( 'Content not found', 'fleurs' ) ?></h2>
+			<div class="entry-content">
+				<?php _e( 'The content you are looking for could not be found.', 'fleurs' ); ?></p>
+				<?php if( is_active_sidebar( 7 ) ) : ?>
+					<?php _e( 'Use the information below or try to seach to find what you\'re looking for:', 'fleurs' ); ?></p>
+				<?php endif; ?>
+				<?php dynamic_sidebar( 7 ); ?>
+			</div><!-- .entry-content -->
+		</article><!-- .post -->
+		<div class="clear"></div>
+	</div><!-- .entry -->
+<?php
+}
+endif;
 
 /**
  * Enable Bootstrap, jQuery, Font Awesome
